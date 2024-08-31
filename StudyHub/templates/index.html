@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%;">
+    {% for row in data %}
+    <a href="{{ url_for('content', content_id=row.id) }}" style="text-decoration: none;">
+        <div style="
+            border: 1px solid #ccc;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s ease;
+            position: relative;
+            text-align: center;
+            border-radius:20px;
+            color: #666;
+        "
+        onmouseover="this.style.backgroundColor='blue'; this.style.color='white'; this.style.animation='shake 0.5s ease';"
+        onmouseout="this.style.backgroundColor=''; this.style.color='#666'; this.style.animation='';"
+        >
+            <h2 style="margin: 0 0 10px 0; font-size: 24px;">{{ row.title }}</h2>
+            <p style="margin: 0; font-size: 16px;">{{ row.description }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+<style>
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        50% { transform: translateX(10px); }
+        75% { transform: translateX(-10px); }
+        100% { transform: translateX(0); }
+    }
+</style>
+
+{% endblock %}
